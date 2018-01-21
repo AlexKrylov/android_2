@@ -50,5 +50,12 @@
             android:textAlignment="center"
             tools:layout_editor_absoluteX="123dp"
             tools:layout_editor_absoluteY="281dp" />
+
+        <Button
+            android:id="@+id/share_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/share"
+            android:textAlignment="center" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

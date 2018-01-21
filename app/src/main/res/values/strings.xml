@@ -3,6 +3,8 @@
     <string name="offer">Выберите цвет</string>
     <string name="result">Результат</string>
     <string name="effect">Опеределение цвета</string>
+    <string name="share">Поделиться с другом</string>
+    <string name="choose_title">Сделать выбор</string>
     <string-array name="color_selection">
         <item>красный</item>
         <item>оранжевый</item>
