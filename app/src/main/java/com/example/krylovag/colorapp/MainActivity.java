@@ -3,7 +3,6 @@ package com.example.krylovag.colorapp;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,10 +19,11 @@ public class MainActivity extends AppCompatActivity {
     public static final String APP_PREFERENCES = "mysettings";
     public static final String APP_PREFERENCES_POSITION = "Position";
     public static final String APP_PREFERENCES_DESCRIPTION = "Description";
+    public static final String APP_PREFERENCES_SAVED_DESCRIPTION = "saved_description";
+    public static final String APP_PREFERENCES_SAVED_POSITION = "saved_position";
     private SharedPreferences mSettings;
     private SharedPreferences.Editor prefEditor;
-    int saved_description;
-    String saved_text;
+    String saved_description;
     int saved_position;
 
     @Override
@@ -46,13 +46,14 @@ public class MainActivity extends AppCompatActivity {
         spinner.setSelection(saved_position);
 
         if(mSettings.contains(APP_PREFERENCES_DESCRIPTION)) {
-            saved_text = mSettings.getString(APP_PREFERENCES_DESCRIPTION, null);
+            saved_description = mSettings.getString(APP_PREFERENCES_DESCRIPTION, null);
         }
-        textView.setText(saved_text);
+        textView.setText(saved_description);
 
         Log.i(TAG, "savedInstanceState " + savedInstanceState);
         if (savedInstanceState != null) {
-            saved_position = savedInstanceState.getInt(APP_PREFERENCES_POSITION);
+            saved_position = savedInstanceState.getInt(APP_PREFERENCES_SAVED_POSITION);
+            saved_description = savedInstanceState.getString(APP_PREFERENCES_SAVED_DESCRIPTION);
         }
      }
 
@@ -107,9 +108,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        int save_description = spinner.getSelectedItemPosition();
+        int save_position = spinner.getSelectedItemPosition();
         prefEditor = mSettings.edit();
-        prefEditor.putInt(APP_PREFERENCES_POSITION, save_description);
+        prefEditor.putInt(APP_PREFERENCES_POSITION, save_position);
         String save_desc = ColorSpec.getEffect(MainActivity.this, spinner.getSelectedItemPosition());
         prefEditor.putString(APP_PREFERENCES_DESCRIPTION, save_desc);
         prefEditor.apply();
@@ -119,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Log.i(TAG, "onSaveInstanceState");
-        outState.putInt(APP_PREFERENCES_POSITION, saved_position);
+        outState.putInt(APP_PREFERENCES_SAVED_POSITION, saved_position);
+        outState.putString(APP_PREFERENCES_POSITION, saved_description);
     }
 }
