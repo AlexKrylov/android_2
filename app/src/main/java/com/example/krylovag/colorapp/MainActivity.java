@@ -52,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
         Log.i(TAG, "savedInstanceState " + savedInstanceState);
         if (savedInstanceState != null) {
-            savedInstanceState.getInt(APP_PREFERENCES_SAVED_POSITION, saved_position);
-            savedInstanceState.getString(APP_PREFERENCES_SAVED_DESCRIPTION, saved_description);
+            saved_position = savedInstanceState.getInt(APP_PREFERENCES_SAVED_POSITION, saved_position);
+            saved_description = savedInstanceState.getString(APP_PREFERENCES_SAVED_DESCRIPTION);
         }
      }
 
